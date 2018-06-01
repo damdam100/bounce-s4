@@ -1,4 +1,5 @@
 .bounce, .bounce2, .bounce3 {
+	position: absolute;
     height: 100px;
     width: 100px;
     border: 1px black solid;

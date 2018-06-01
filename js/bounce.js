@@ -2,11 +2,12 @@ var Bounce = function () {
 
     /**
      * Default settings for the module
-     * @type {{selector: string, gravity: number}}
+     * @type {{selector: string, gravity: number, moveX: number}}
      */
     var defaultSettings = {
         selector: '.bounce',
         gravity: 9.81,
+		moveX: 0,
         updateSpeed: 1 //In milliseconds
     };
 
@@ -21,6 +22,12 @@ var Bounce = function () {
      * @type {number}
      */
     var speedY;
+	
+	/**
+	 * The horizontal speed
+	 * @type {number}
+	 */
+	var speedX;
 
     /**
      * The timer that updates the model and the screen
@@ -59,6 +66,11 @@ var Bounce = function () {
         if(element.parentElement.clientHeight <= position.y + element.clientHeight) {
             speedY = -speedY;
         }
+		
+		//If the element reaches the side of the parent element reverse the speed
+        if(element.parentElement.clientWidth <= position.x + element.clientWidth) {
+            speedX = -speedX;
+        }
 
         updateElement();
     };
@@ -67,8 +79,9 @@ var Bounce = function () {
      * Update the variables to the new reality
      */
     var update = function() {
-        move(0, speedY);
+        move(speedX, speedY);
         speedY += defaultSettings.gravity * (defaultSettings.updateSpeed/1000);
+		speedX += defaultSettings.moveX * (defaultSettings.updateSpeed/1000);
     };
 
     var mergeObjects  = function(object1, object2) {
@@ -89,6 +102,7 @@ var Bounce = function () {
         selector = selector || defaultSettings.selector;
         element = document.querySelector(selector);
         speedY = 0;
+		speedX = 0;
         timer = setInterval(update, defaultSettings.updateSpeed);
     };
 
