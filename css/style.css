@@ -1,0 +1,12 @@
+.bounce, .bounce2 {
+    height: 100px;
+    width: 100px;
+    border: 1px black solid;
+    float: left;
+    margin-right: 20px;
+}
+
+.box{
+    height: 300px;
+    width: 300px;
+}
