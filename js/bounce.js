@@ -81,6 +81,7 @@ var Bounce = function () {
         
         // Round the number of the position
         var positie = Math.round(element.parentElement.clientHeight - position.y - element.clientHeight);
+        var positie2 = Math.round(position.x);
         //If the element reaches the bottom of the parent element reverse the speed
         if(element.parentElement.clientHeight <= position.y + element.clientHeight) {
             speedY = -speedY;
@@ -97,7 +98,7 @@ var Bounce = function () {
             {
                 
             
-        element.innerHTML = "Hoogte: " + positie +" <br> " +"Breedte: " + position.x;
+        element.innerHTML = "Hoogte: " + positie +" <br> " +"Breedte: " + positie2;
         element.style.color = Kleurbekennen(positie , 650 );
             }
         
