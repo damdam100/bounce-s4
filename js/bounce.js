@@ -2,12 +2,13 @@ var Bounce = function () {
 
     /**
      * Default settings for the module
-     * @type {{selector: string, gravity: number, moveX: number}}
+     * @type {{selector: string, gravity: number, moveX: number, color: string}}
      */
     var defaultSettings = {
         selector: '.bounce',
         gravity: 9.81,
 		moveX: 0,
+		color: 'rgb(255, 255, 255)',
         updateSpeed: 1 //In milliseconds
     };
 
@@ -28,6 +29,12 @@ var Bounce = function () {
 	 * @type {number}
 	 */
 	var speedX;
+	
+	/**
+	 * The background color
+	 * @type {string}
+	 */
+	var newColor;
 
     /**
      * The timer that updates the model and the screen
@@ -74,6 +81,34 @@ var Bounce = function () {
 
         updateElement();
     };
+	
+	/**
+	 * Changes the background color of the bounce element
+	 * @param {string} newColor
+	 * note: the only accepted input is in this format: 'rgb(#, #, #);"
+	 */
+	var changeColor = function(_newColor) {
+		
+		//check if the input is correct
+		if(checkRgb(_newColor) == true){
+			element.style.backgroundColor = _newColor;
+		} else {
+			console.log('De gekozen kleurwaarde voor element ' + element.className + ' is incorrect of niet bestaand');
+		}
+	}
+	
+	/**
+	 * Checks if the color input is correct according to the css RGB color format
+	 * @param {string} rgb
+	 */
+	function checkRgb (rgb) {
+		
+		var rxValidRgb = /([R][G][B][A]?[(]\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])\s*,\s*([01]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])(\s*,\s*((0\.[0-9]{1})|(1\.0)|(1)))?[)])/i
+		
+		if (rxValidRgb.test(rgb)) {
+			return true
+		}
+	}
 
     /**
      * Update the variables to the new reality
@@ -103,6 +138,8 @@ var Bounce = function () {
         element = document.querySelector(selector);
         speedY = 0;
 		speedX = 0;
+		newColor = defaultSettings.color;
+		changeColor(newColor);
         timer = setInterval(update, defaultSettings.updateSpeed);
     };
 
