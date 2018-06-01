@@ -4,6 +4,9 @@
     border: 1px black solid;
     float: left;
     margin-right: 20px;
+    position: absolute;
+    word-wrap: break-word;
+    font-weight: bolder;
 }
 
 .box{

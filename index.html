@@ -8,24 +8,24 @@
 </head>
 <body>
     <div class="box">
-        <div class="bounce">
+        <div id="blok" class="bounce">
             Example
         </div>
-        <div class="bounce2">
+        <div id="blok2" class="bounce2">
             Example2
         </div>
-        <div class="bounce3">
+        <div id="blok3" class="bounce3">
             Example3
         </div>
     </div>
-	<p>test</p>
+	
     <script>
         var bounce = new Bounce();
         bounce.init();
         var  bounce2 = new Bounce();
-        bounce2.init('.bounce2', {gravity: 5});
+        bounce2.init('.bounce2', {gravity: 5, info: "zwart"});
         var  bounce2 = new Bounce();
-        bounce2.init('.bounce3', {gravity: 3});
+        bounce2.init('.bounce3', {gravity: 3, info: "kleur"});
 
         function optellen(getal1, getal2) {
             var result = getal1 + getal2;

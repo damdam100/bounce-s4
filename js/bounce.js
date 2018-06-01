@@ -2,12 +2,14 @@ var Bounce = function () {
 
     /**
      * Default settings for the module
-     * @type {{selector: string, gravity: number}}
+     * @type {{selector: string, gravity: number, info: string, updateSpeed: number}}
      */
     var defaultSettings = {
         selector: '.bounce',
         gravity: 9.81,
+        info: "geen",
         updateSpeed: 1 //In milliseconds
+        
     };
 
     /**
@@ -15,7 +17,13 @@ var Bounce = function () {
      * @type {HTMLElement}
      */
     var element;
-
+    
+    /**
+     * The info option
+     * @type {string}
+     */
+    var info;
+    
     /**
      * The vertical speed
      * @type {number}
@@ -43,6 +51,8 @@ var Bounce = function () {
     var updateElement = function() {
         element.style.marginLeft = position.x + 'px';
         element.style.marginTop = position.y + 'px';
+        
+        
     };
 
     /**
@@ -54,13 +64,49 @@ var Bounce = function () {
 
         position.x += xChange;
         position.y += yChange;
-
+        
+        // Round the number of the position
+        var positie = Math.round(element.parentElement.clientHeight - position.y - element.clientHeight);
         //If the element reaches the bottom of the parent element reverse the speed
         if(element.parentElement.clientHeight <= position.y + element.clientHeight) {
             speedY = -speedY;
         }
-
+        
+        // if someone wants the info
+        if(info !== "geen")
+            {
+                
+            
+        element.innerHTML = "Hoogte: " + positie +" <br> " +"Breedte: " + position.x;
+        element.style.color = Kleurbekennen(positie , 650 );
+            }
+        
         updateElement();
+    };
+    
+    //only when somebody wants info
+    function Kleurbekennen(start, end) {
+        
+        //Calculate the percentage
+        var a = start / end;
+        var b = a * 100;
+       
+            //Red to green  
+            if(info == "kleur")
+            {   
+                return 'hsl('+b+', 100%, 50%)'; 
+                // Return a CSS HSL string
+            }
+        
+            //Black to white  
+            if(info == "zwart")
+            {   
+                return 'hsl(50, 0%, '+b+'%)'; 
+                // Return a CSS HSL string
+            }
+  
+        
+  
     };
 
     /**
@@ -69,6 +115,7 @@ var Bounce = function () {
     var update = function() {
         move(0, speedY);
         speedY += defaultSettings.gravity * (defaultSettings.updateSpeed/1000);
+        
     };
 
     var mergeObjects  = function(object1, object2) {
@@ -89,6 +136,7 @@ var Bounce = function () {
         selector = selector || defaultSettings.selector;
         element = document.querySelector(selector);
         speedY = 0;
+        info = defaultSettings.info;
         timer = setInterval(update, defaultSettings.updateSpeed);
     };
 
