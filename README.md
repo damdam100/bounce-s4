@@ -68,7 +68,7 @@ Met deze functie kun je de horizontale beweging van het bounce element aanpassen
 Met deze functie kun je de positie van het bounce element aangeven. Er zijn drie invoeropties:
  - geen; Er wordt geen informatie over de positie weergeven.
 - zwart; Er wordt informatie over de positie weergeven in zwart/wit.
-- kleur; Er wordt informatie over de positie weergeven in groen/geen/rood, afhankelijk van de hoogte.
+- kleur; Er wordt informatie over de positie weergeven in groen/geel/rood, afhankelijk van de hoogte.
     
 De standaardwaarde is 'geen'.
 ```html
