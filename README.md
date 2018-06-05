@@ -55,7 +55,7 @@ Met deze functie kun je het aantal miliseconden aangeven waarmee het bounce elem
 deze functies zijn door [Jesse van der Elst](https://github.com/TheUnderdoggie) en [Damien Michiels](https://github.com/damdam100) gemaakt. Bij elke functie staat aangegeven wie die heeft gemaakt.
 
 ### (Damien)moveX:
-Met deze functie kun je de horizontale beweging van het bounce element aanpassen. Deze staat standaard op 0. De variable die je meegaaft moet een getal zijn.
+Met deze functie kun je de horizontale beweging van het bounce element aanpassen. Deze staat standaard op 0. De variable die je meegeeft moet een getal zijn.
 ```html
 <script>
     //maakt een bounce element aan wat 5 pixels omlaag gaat, en 2 pixels opzei gaat per miliseconde.
